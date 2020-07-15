@@ -1,0 +1,159 @@
+<div class="container">
+    <br>
+    <!-- <p class="text-center"> FLIK </p> -->
+    <span>
+            <img src="assets/images/Flik-Logo-RGB-Purple.png" height="30px" width="100%"  />
+    </span>
+    <hr>
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h2 class="card-title mt-3 text-center">Create Account</h2>
+            <!-- <p class="text-center">Get started with your account</p>
+            <p>
+                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via
+                    facebook</a>
+            </p>
+            <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p> -->
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div class="form-group input-group">
+                    <label class="hoverable" for="fileInput">
+                        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+                        <div class="hover-text">Choose file</div>
+                        <div class="background"></div>
+                    </label>
+                    <br />
+                    <input id="fileInput" type='file' (change)="onSelectFile($event)" formControlName="profilePic">
+                    <button class="close-button" *ngIf="url" (click)="delete()"><i class="fa fa-window-close"
+                            aria-hidden="true"></i></button>
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input type="text" formControlName="firstName" class="form-control" placeholder="First Name"
+                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First name is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name"
+                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <!-- <input name="" class="form-control" placeholder="Email address" type="email"> -->
+                    <input type="email" formControlName="email" class="form-control" placeholder="Email Address"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 25%;">
+                        <option selected="">+91</option>
+                        <option value="1">+972</option>
+                        <option value="2">+198</option>
+                        <option value="3">+701</option>
+                    </select>
+                    <!-- <input name="" class="form-control" placeholder="Phone number" type="text"> -->
+                    <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Phone Number"
+                        [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                    <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select class="form-control" formControlName="jobType"
+                        [ngClass]="{ 'is-invalid': submitted && f.jobType.errors }">
+                        <option selected=""> Select job type</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_USER">Sub Admin</option>
+                        <option value="ROLE_USER">Shop Manager</option>
+                    </select>
+                    <div *ngIf="submitted && f.jobType.errors" class="invalid-feedback">
+                        <div *ngIf="f.jobType.errors.required">Select Job Type</div>
+                    </div>
+                </div> <!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <!-- <input class="form-control" placeholder="Create password" type="password"> -->
+                    <input type="password" formControlName="password" class="form-control" placeholder="Create password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <!-- <input class="form-control" placeholder="Repeat password" type="password"> -->
+                    <input type="password" formControlName="repeatPassword" class="form-control"
+                        placeholder="Repeat password"
+                        [ngClass]="{ 'is-invalid': submitted && f.repeatPassword.errors }" />
+                    <div *ngIf="submitted && f.repeatPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.repeatPassword.errors.required">Password is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <!-- <input class="form-control" placeholder="Repeat password" type="password"> -->
+                    <input type="date" class="form-control" id="birthDate" name="birthDate"
+                        [ngModel]="birthDate | date:'yyyy-MM-dd'" formControlName="birthDate">
+                    <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthDate.errors.required">BirthDate is required</div>
+                    </div>
+                </div> <!-- form-group// -->
+                <!-- <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                </div> form-group// -->
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Register
+                    </button>
+
+                </div>
+                <p class="text-center">Have an account? <a routerLink="/login">Log In</a> </p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
+
+</div>
+<!--container end.//-->
+
+<br><br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h3 class="text-white mt-3">Flik</h3>
+        <p class="h5 text-white"></p> <br>
+        <p><a class="btn btn-warning" target="_blank">
+                <i class="fa fa-window-restore "></i></a></p>
+    </div>
+    <br><br>
+</article>

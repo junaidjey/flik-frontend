@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 400px;">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <div>
+                        <div class="form-group input-group">
+                            <input type="text" formControlName="productName" class="form-control"
+                                placeholder="Product Name"
+                                [ngClass]="{ 'is-invalid': submitted && f.productName.errors }" />
+                            <div *ngIf="submitted && f.productName.errors" class="invalid-feedback">
+                                <div *ngIf="f.productName.errors.required">Product name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <select class="form-control" formControlName="companyName"
+                                [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }">
+                                <option selected=""> Select Company</option>
+                                <option>Pragone</option>
+                                <option>VKC</option>
+                                <option>Action</option>
+                            </select>
+                            <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                                <div *ngIf="f.companyName.errors.required">Select Company</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control" formControlName="productType"
+                                [ngClass]="{ 'is-invalid': submitted && f.productType.errors }">
+                                <option selected=""> Select Type</option>
+                                <option>Slipper</option>
+                                <option>Shoes</option>
+                            </select>
+                            <div *ngIf="submitted && f.productType.errors" class="invalid-feedback">
+                                <div *ngIf="f.productType.errors.required">Select Product Type</div>
+                            </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <select class="form-control" formControlName="productSubType"
+                                [ngClass]="{ 'is-invalid': submitted && f.productSubType.errors }">
+                                <option selected=""> Select Sub Type</option>
+                                <option>casual</option>
+                                <option>party</option>
+                            </select>
+                            <div *ngIf="submitted && f.productSubType.errors" class="invalid-feedback">
+                                <div *ngIf="f.productSubType.errors.required">Select Product Sub Type</div>
+                            </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <textarea formControlName="productDescription" class="form-control"
+                                placeholder="Enter Description"
+                                [ngClass]="{ 'is-invalid': submitted && f.productDescription.errors }"></textarea>
+                            <div *ngIf="submitted && f.productDescription.errors" class="invalid-feedback">
+                                <div *ngIf="f.productDescription.errors.required">Product description is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img class="col-sm-4 column p-3" *ngFor='let url of urls' [src]="url" width="100" height="100">
+                        <div class="form-group input-group">
+                            <input type='file' class="form-control" formControlName="productImage"
+                                (change)="onSelectFile($event)"
+                                [ngClass]="{ 'is-invalid': submitted && f.productImage.errors }" multiple>
+                            <div *ngIf="submitted && f.productImage.errors" class="invalid-feedback">
+                                <div *ngIf="f.productImage.errors.required">Product image is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Register
+                    </button>
+                </div>
+            </form>
+        </article>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cover</th>
+      <th>Movie Name</th>
+      <th>Genre</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="persons?.length != 0">
+      <tr *ngFor="let person of persons">
+          <td>{{ person.id }}</td>
+          <td><img src="{{ person.imageUrl }}" alt="{{ person.name }}" width="150" height="200"></td>
+          <td>{{ person.name }}<br><p>{{ person.description }}</p> <br> 
+            <span *ngIf="person.season != null">Season: {{person.season}} || </span>  
+            <span *ngIf="person.episode != null"> Episode: {{person.episode}} || </span> 
+            <span *ngIf="person.releaseDate != null"> Release: {{person.releaseDate}}</span> </td>
+          <td>{{ person.genre }}</td>
+      </tr>
+  </tbody>
+  <tbody *ngIf="persons?.length == 0">
+    <tr>
+      <td colspan="3" class="no-data-available">No data!</td>
+    </tr>
+  <tbody>
+</table>
