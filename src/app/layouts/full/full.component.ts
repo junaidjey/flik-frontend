@@ -36,7 +36,6 @@ export class FullComponent implements OnInit {
     }
     this.defaultSidebar = this.sidebartype;
     this.handleSidebar();
-   // this.userService.getProfilePic().subscribe(data => {alert("dd")}, error => {alert("ff"); console.log(error)});
     this.fileUploads = this.userService.getProfilePic();
     console.log(this.fileUploads);
 
