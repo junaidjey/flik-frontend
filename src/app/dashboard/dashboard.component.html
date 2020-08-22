@@ -36,17 +36,20 @@
 <div class="row">
     <div *ngFor="let movie of movies" class="col-lg-2">
         <div class="card">
-            <img class="card-img-top img-responsive" src="{{movie.imageUrl}}" alt="Card">
+            
+            <img *ngIf="movie.imageUrl" class="card-img-top img-responsive" src="{{movie.baseUrl}}{{movie.imageUrl}}" alt="Card">
+            <img *ngIf="!movie.imageUrl" class="card-img-top img-responsive" src="https://flik-bucket.s3.amazonaws.com/assets/images/Flik-Logo-RGB-Purple1.png" alt="Card">
             <div class="card-body">
+                <h5 class="font-normal"><b>{{movie.name}}</b></h5>
                 <ul class="list-inline d-flex font-14">
-                    <li class="p-l-0 mr-3">Genre : {{movie.genre}}</li>
+                    <li class="p-l-0 mr-3">Genre : <span *ngFor="let genre of movie.genres"> <b>{{genre.name}} </b> </span></li>
                 </ul>
                 <ul class="list-inline d-flex font-14">
                     <li>
                         <a href="javascript:void(0)" class="link">{{movie.likes}} Likes</a>
                     </li>
                 </ul>
-                <h3 class="font-normal">{{movie.name}}</h3>
+                
             </div>
         </div>
     </div>
