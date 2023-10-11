@@ -15,7 +15,7 @@
     "@angular/animations": "^9.1.12",
     "@angular/common": "^9.1.12",
     "@angular/compiler": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/core": "^10.2.5",
     "angular-datatables": "^9.0.2",
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
